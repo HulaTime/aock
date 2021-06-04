@@ -1,0 +1,40 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "baseUrl": "src",
+    "module": "CommonJS",
+    "esModuleInterop": true,
+    "target": "es2019",
+    "noImplicitAny": true,
+    "moduleResolution": "node",
+    "lib": [
+      "es5",
+      "es6",
+      "es7",
+      "es2017",
+      "es2018",
+      "es2019",
+      "es2020"
+    ],
+    "preserveConstEnums": true,
+    "removeComments": true,
+    "stripInternal": true,
+    "declaration": true,
+    "outDir": "./dist",
+    "sourceMap": true,
+    "strictNullChecks": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noImplicitThis": true,
+    "noUnusedParameters": false,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "forceConsistentCasingInFileNames": true,
+    "allowJs": false,
+    "checkJs": false,
+  },
+  "exclude": [
+    "dist/",
+    "node_modules/",
+  ]
+}

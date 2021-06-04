@@ -1,0 +1,21 @@
+{
+  "name": "het-wat",
+  "version": "0.0.1",
+  "description": "http event tester",
+  "main": "index.js",
+  "scripts": {
+    "build": "./node_modules/.bin/tsc",
+    "lint": "./node_modules/.bin/eslint",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "hulatime@tutanota.com",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^15.12.0",
+    "@typescript-eslint/eslint-plugin": "^4.26.0",
+    "@typescript-eslint/parser": "^4.26.0",
+    "eslint": "^7.27.0",
+    "jest": "^27.0.4",
+    "typescript": "^4.3.2"
+  }
+}
