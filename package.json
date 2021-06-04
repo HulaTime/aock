@@ -1,10 +1,15 @@
 {
-  "name": "het-wat",
+  "name": "aock",
   "version": "0.0.1",
-  "description": "http event tester",
+  "description": "async http request testing with on demand servers + endpoints",
+  "repository": {
+    "url": "https://github.com/HulaTime/aock"
+  },
   "main": "index.js",
   "scripts": {
     "build": "./node_modules/.bin/tsc",
+    "prestart": "npm run build",
+    "start": "node dist/index",
     "lint": "./node_modules/.bin/eslint",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
