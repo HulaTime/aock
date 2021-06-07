@@ -1,35 +1,11 @@
-import http, { IncomingMessage, ServerResponse } from 'http';
+import { fork } from 'child_process';
 
-import config from './config';
+// import Aock from './lib/Aock';
 
-// class HET: HttpErrorTester {
-//   constructor(port) {
-//     this.port = port || config.hetPort;
-//   }
-// }
+// const aock = new Aock();
 
-function primaryListener(req: IncomingMessage, res: ServerResponse) {
-  console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++: url', req.url);
-  let data = '';
-  req.on('data', chunk => {
-    data += chunk;
-  });
+// aock.start();
 
-  req.on('end', () => {
-    console.log('data', data)
-    res.writeHead(200);
-    res.end(data);
-  })
-}
+fork('./server.mjs')
 
-const server = http.createServer(primaryListener);
-const serverOptions = {
-  port: config.hetPort || 3000,
-  host: 'localhost'
-};
-
-server.listen(serverOptions, () => {
-  console.log(`HET Server is running on "http://${serverOptions.host}:${serverOptions.port}"`);
-});
-
-server.on
+console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++: abc123');

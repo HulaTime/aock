@@ -1,6 +1,6 @@
 {
   "name": "aock",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "description": "async http request testing with on demand servers + endpoints",
   "repository": {
     "url": "https://github.com/HulaTime/aock"
@@ -8,6 +8,7 @@
   "main": "index.js",
   "scripts": {
     "build": "./node_modules/.bin/tsc",
+    "clean": "rm -r dist/",
     "prestart": "npm run build",
     "start": "node dist/index",
     "lint": "./node_modules/.bin/eslint",
@@ -20,7 +21,9 @@
     "@typescript-eslint/eslint-plugin": "^4.26.0",
     "@typescript-eslint/parser": "^4.26.0",
     "eslint": "^7.27.0",
-    "jest": "^27.0.4",
     "typescript": "^4.3.2"
+  },
+  "dependencies": {
+    "jest": "^27.0.4"
   }
 }
