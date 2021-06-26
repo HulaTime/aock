@@ -1,18 +1,16 @@
-import http, { Server } from 'http';
-// import http, { IncomingMessage, ServerResponse, Server } from 'http';
+import http, { IncomingMessage, ServerResponse, Server } from 'http';
 
-// import 
-
-// function _primaryListener(req: IncomingMessage, res: ServerResponse) {
-// }
+function _primaryListener(_: IncomingMessage, res: ServerResponse) {
+  res.end();
+}
 
 class TestServer {
   private _server: Server;
   private _port: number;
+  public name: string = Math.floor(Math.random() * (1000) + 1).toString();
 
   constructor(port = 3000) {
-    // this._server = http.createServer(_primaryListener);
-    this._server = http.createServer();
+    this._server = http.createServer(_primaryListener);
     this._port = port;
   }
 
@@ -21,10 +19,43 @@ class TestServer {
   //     test.evaluate();
   //   });
   // }
+  // public addTest(test: Test): void {
+  //   this._server.addListener('request', test.listener())
+  // }
 
-  public listen(): void {
-    this._server.listen({ host: 'localhost', port: this._port }, () => {
-      console.log(`Aock Server is running on "http://localhost:${this._port}"`);
+  public getPort(): number {
+    return this._port;
+  }
+
+  public listen(): Promise<void> {
+    return new Promise((resolve, reject) => {
+      try {
+        this._server.listen({ host: 'localhost', port: this._port }, () => {
+          console.log(`Aock Server ${this.name} is running on "http://localhost:${this._port}"`);
+          resolve();
+        });
+      } catch (err) {
+        console.log(`Error starting Aock server ${this.name}`);
+        reject(err);
+      }
+    });
+  }
+
+  public async close(): Promise<void> {
+    return new Promise((resolve, reject) => {
+      try {
+        this._server.close((err) => {
+          if (err) {
+            console.log(`Error closing Aock server ${this.name}`);
+            reject(err);
+          }
+          console.log(`Successfully closed Aock server ${this.name}`);
+          resolve();
+        });
+      } catch (err) {
+        console.log(`Error closing Aock server ${this.name}`);
+        reject(err);
+      }
     });
   }
 }
