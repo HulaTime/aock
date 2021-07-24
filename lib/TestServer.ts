@@ -1,7 +1,14 @@
 import http, { IncomingMessage, ServerResponse, Server } from 'http';
 
-function _primaryListener(_: IncomingMessage, res: ServerResponse) {
-  res.end();
+function _primaryListener(req: IncomingMessage, res: ServerResponse) {
+  let body = '';
+  req.on('data', (data) => {
+    body += data;
+  });
+  req.on('end', () => {
+    console.log(req);
+    res.end(body);
+  });
 }
 
 class TestServer {

@@ -7,8 +7,8 @@
   },
   "main": "index.js",
   "scripts": {
-    "build": "./node_modules/.bin/tsc",
     "clean": "rm -r dist/",
+    "build": "rm -r dist/ && ./node_modules/.bin/tsc",
     "prestart": "npm run build",
     "start": "node dist/index",
     "lint": "./node_modules/.bin/eslint . --ext .ts",

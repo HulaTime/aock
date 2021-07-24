@@ -1,7 +1,10 @@
 {
   "compileOnSave": true,
   "compilerOptions": {
-    "baseUrl": "src",
+    "baseUrl": "lib",
+    "paths": {
+      "lib/*": ["lib/*"]
+    },
     "module": "CommonJS",
     "esModuleInterop": true,
     "target": "es2019",
@@ -36,5 +39,6 @@
   "exclude": [
     "dist/",
     "node_modules/",
+    "tests"
   ],
 }

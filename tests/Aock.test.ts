@@ -1,6 +1,6 @@
 import Aock from '../lib/Aock';
 
-describe('Aock Class', () => {
+xdescribe('Aock Class', () => {
   test('it should exist', () => {
     expect(Aock).toBeDefined();
   });

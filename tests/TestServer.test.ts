@@ -2,7 +2,7 @@ import fetch from 'node-fetch';
 
 import TestServer from '../lib/TestServer';
 
-describe('TestServer class', () => {
+xdescribe('TestServer class', () => {
   test('it should exist', () => {
     expect(TestServer).toBeDefined();
   });
