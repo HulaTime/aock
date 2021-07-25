@@ -6,7 +6,6 @@ function _primaryListener(req: IncomingMessage, res: ServerResponse) {
     body += data;
   });
   req.on('end', () => {
-    console.log(req);
     res.end(body);
   });
 }

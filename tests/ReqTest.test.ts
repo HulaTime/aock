@@ -64,7 +64,9 @@ describe('ReqTest class', () => {
       });
 
       test('#headers sets the expected headers and returns the class instance', () => {
-        const res = reqTest.headers({});
+        const res = reqTest
+          .get('/abc')
+          .headers({});
         expect(res).toBe(reqTest);
       });
     });
@@ -145,12 +147,23 @@ describe('ReqTest class', () => {
         });
       });
 
-      describe('Evaluate Get request with headers', () => {
-        test('when all conditions are satisfied', () => {
+      describe('Evaluate Request headers', () => {
+        test('Get request with matching headers', () => {
           reqTest
             .get(uriUnderTest)
             .headers({ 'Content-Type': headersUnderTest['content-type'] });
           listener(listenerRequest, listenerResponse);
+          const { isSatisfied, headersMatched } = reqTest.evaluate();
+          expect(headersMatched).toBe(true);
+          expect(isSatisfied).toBe(true);
+        });
+
+        test('Post request with matching headers', () => {
+          const postRequest = { ...listenerRequest, method: 'post' } as IncomingMessage;
+          reqTest
+            .post(uriUnderTest)
+            .headers({ 'Content-Type': headersUnderTest['content-type'] });
+          listener(postRequest, listenerResponse);
           const { isSatisfied, headersMatched } = reqTest.evaluate();
           expect(headersMatched).toBe(true);
           expect(isSatisfied).toBe(true);
@@ -167,6 +180,27 @@ describe('ReqTest class', () => {
           const { isSatisfied, headersMatched } = reqTest.evaluate();
           expect(headersMatched).toBe(false);
           expect(isSatisfied).toBe(false);
+        });
+
+        test('cannot set headers without first specifying method and path', () => {
+          expect(() => {
+            reqTest.headers({});
+          }).toThrow('Cannot set headers before setting request type');
+        });
+      });
+
+      describe('Evaluate request query params', () => {
+        test('http requests with matching query params', () => {
+          reqTest.get(uriUnderTest)
+            .query({ big: 'dog', little: 'cat' });
+          const request = {
+            ...listenerRequest,
+            url: `${uriUnderTest}?big=dog&little=cat`
+          } as IncomingMessage;
+          listener(request, listenerResponse);
+          const { isSatisfied, queryMatched } = reqTest.evaluate();
+          expect(queryMatched).toBe(true);
+          expect(isSatisfied).toBe(true);
         });
       });
     });
