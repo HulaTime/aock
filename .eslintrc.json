@@ -9,8 +9,8 @@
     "plugin:@typescript-eslint/recommended"
   ],
   "rules": {
-    // "@typescript-eslint/no-var-requires": "off"
-    "@typescript-eslint/semi": "error"
+    "@typescript-eslint/semi": "error",
+    "no-console": "warn"
   }
 }
 
